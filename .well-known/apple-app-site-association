@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [ "S4DYQ487Z2.QChat.Strawberry" ],
+        "components": [
+          {
+                  "/": "/*",
+                  "comment": "Match all URLs"
+               }
+        ]
+      }
+    ]
+  }
+}
