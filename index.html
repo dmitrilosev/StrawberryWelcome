@@ -1,24 +1,68 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Open in Strawberry</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<script>
-(function() {
-  var appStoreURL = 'https://apps.apple.com/app/id6749492633';
-  var link = window.location.href;
-  var meta = document.createElement('meta');
-  meta.name = 'apple-itunes-app';
-  meta.content = 'app-id=6749492633, app-argument=' + link;
-  document.head.appendChild(meta);
-  setTimeout(function() {
-    window.location.href = appStoreURL;
-  }, 1000);
-})();
-</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strawberry Support</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f5f6f8;
+      color: #333;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    .icon-wrapper {
+      width: 120px;
+      height: 120px;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .icon-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* aspect fill */
+    }
+    h1 {
+      margin: 20px 0 10px;
+      font-size: 28px;
+    }
+    p {
+      margin: 0 0 20px;
+      font-size: 16px;
+      color: #555;
+    }
+    a.button {
+      display: inline-block;
+      background: linear-gradient(135deg, #6366f1, #3b82f6); /* современный градиент */
+      color: white;
+      padding: 12px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    a.button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+    }
+  </style>
 </head>
 <body>
-<p>Перенаправление в App Store…</p>
+  <div class="icon-wrapper">
+    <img src="strawberry-icon.png" alt="Strawberry logo" />
+  </div>
+  <h1>Strawberry</h1>
+  <p>Welcome! Need help? We're here for you.</p>
+  <a class="button" href="mailto:haitovfurqatjon@gmail.com">Write to us</a>
 </body>
 </html>
