@@ -8,17 +8,34 @@
 (function() {
   var appStoreURL = 'https://apps.apple.com/app/id6749492633';
   var link = window.location.href;
+  var storePrefix = '/Strawberry/store/';
+  var appURL = null;
+  var vendorId = '';
+
+  if (window.location.pathname.indexOf(storePrefix) === 0) {
+    vendorId = decodeURIComponent(window.location.pathname.slice(storePrefix.length).split('/')[0] || '');
+  }
+  if (!vendorId) {
+    vendorId = new URLSearchParams(window.location.search || '').get('vendorId') || '';
+  }
+  if (vendorId) {
+    appURL = 'strawberry://store/' + encodeURIComponent(vendorId);
+  }
+
   var meta = document.createElement('meta');
   meta.name = 'apple-itunes-app';
   meta.content = 'app-id=6749492633, app-argument=' + link;
   document.head.appendChild(meta);
+  if (appURL) {
+    window.location.href = appURL;
+  }
   setTimeout(function() {
     window.location.href = appStoreURL;
-  }, 1000);
+  }, appURL ? 3500 : 1000);
 })();
 </script>
 </head>
 <body>
-<p>Перенаправление в App Store…</p>
+<p>Открываем Strawberry…</p>
 </body>
 </html>

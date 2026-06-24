@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Redirecting...</title>
+<title>Open in Strawberry</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <script>
 (function() {
@@ -12,15 +12,20 @@
     var APP_ID = '6749492633';
     var appStoreURL = 'https://apps.apple.com/app/id' + APP_ID;
     var link = window.location.href;
+    var vendorId = decodeURIComponent(path.slice(prefix.length).split('/')[0] || '');
+    var appURL = vendorId ? 'strawberry://store/' + encodeURIComponent(vendorId) : '';
     var meta = document.createElement('meta');
     meta.name = 'apple-itunes-app';
     meta.content = 'app-id=' + APP_ID + ', app-argument=' + link;
     document.head.appendChild(meta);
+    if (appURL) {
+      window.location.href = appURL;
+    }
     setTimeout(function() {
       window.location.href = appStoreURL;
-    }, 1000);
+    }, appURL ? 3500 : 1000);
     document.addEventListener('DOMContentLoaded', function() {
-      document.body.innerHTML = '<p>Перенаправление в App&nbsp;Store…</p>';
+      document.body.innerHTML = '<p>Открываем Strawberry…</p><p><a href="' + (appURL || appStoreURL) + '">Открыть вручную</a></p>';
     });
   }
 })();
