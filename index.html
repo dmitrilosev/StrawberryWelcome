@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Strawberry Support</title>
+  <title>Поддержка Strawberry</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -39,30 +39,124 @@
       font-size: 16px;
       color: #555;
     }
-    a.button {
+    .button {
       display: inline-block;
       background: linear-gradient(135deg, #6366f1, #3b82f6); /* современный градиент */
       color: white;
       padding: 12px 24px;
       border-radius: 10px;
+      border: 0;
       text-decoration: none;
       font-size: 16px;
       font-weight: 600;
+      font-family: inherit;
       box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
       transition: transform 0.15s ease, box-shadow 0.15s ease;
+      cursor: pointer;
     }
-    a.button:hover {
+    .button:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+    }
+    .sheet-backdrop {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.28);
+      padding: 16px;
+      box-sizing: border-box;
+    }
+    .sheet-backdrop.is-open {
+      display: flex;
+    }
+    .sheet {
+      width: min(420px, 100%);
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 24px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+      padding: 10px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    .sheet-title {
+      margin: 8px 12px 10px;
+      color: #555;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .sheet-option {
+      display: block;
+      color: #1f2937;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 600;
+      padding: 15px 14px;
+      border-radius: 16px;
+      background: #fff;
+    }
+    .sheet-option + .sheet-option {
+      margin-top: 8px;
+    }
+    .sheet-close {
+      width: 100%;
+      margin-top: 10px;
+      border: 0;
+      border-radius: 16px;
+      background: #f3f4f6;
+      color: #374151;
+      font-size: 17px;
+      font-weight: 600;
+      padding: 15px 14px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
   <div class="icon-wrapper">
-    <img src="strawberry-icon.png" alt="Strawberry logo" />
+    <img src="strawberry-icon.png" alt="Логотип Strawberry" />
   </div>
   <h1>Strawberry</h1>
-  <p>Welcome! Need help? We're here for you.</p>
-  <a class="button" href="mailto:haitovfurqatjon@gmail.com">Write to us</a>
+  <p>Нужна помощь? Мы рядом.</p>
+  <button class="button" type="button" id="contactButton">Написать нам</button>
+
+  <div class="sheet-backdrop" id="contactSheet" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="contactSheetTitle">
+      <div class="sheet-title" id="contactSheetTitle">Связаться через</div>
+      <a class="sheet-option" href="https://wa.me/79250548855">WhatsApp</a>
+      <a class="sheet-option" href="mailto:haitovfurqatjon@gmail.com">Почта по умолчанию</a>
+      <button class="sheet-close" type="button" id="closeSheetButton">Закрыть</button>
+    </div>
+  </div>
+
+  <script>
+    const contactButton = document.getElementById('contactButton');
+    const contactSheet = document.getElementById('contactSheet');
+    const closeSheetButton = document.getElementById('closeSheetButton');
+
+    function openSheet() {
+      contactSheet.classList.add('is-open');
+      contactSheet.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeSheet() {
+      contactSheet.classList.remove('is-open');
+      contactSheet.setAttribute('aria-hidden', 'true');
+    }
+
+    contactButton.addEventListener('click', openSheet);
+    closeSheetButton.addEventListener('click', closeSheet);
+    contactSheet.addEventListener('click', (event) => {
+      if (event.target === contactSheet) {
+        closeSheet();
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeSheet();
+      }
+    });
+  </script>
 </body>
 </html>
